@@ -14,17 +14,15 @@ protocol ViewModelDelegate: AnyObject {
 }
 
 class ViewModel {
-    
     weak var delegate: ViewModelDelegate?
-    var searchResponse: SearchResponse?
+    private var searchResponse: SearchResponse?
+    private let iTunesUrlStr = "https://itunes.apple.com/search"
     
-    func loadData(term : String) {
-        
-        delegate?.willLoadData()
-        let urlStr = "https://itunes.apple.com/search?term=\(term)&media=music"
-        
-        if let url = URL(string: urlStr) {
-            URLSession.shared.dataTask(with: url, completionHandler: { [weak self] (data, response, error) in
+    func loadData(queryParameter: [String: String]) {
+        if let url = URL(string: iTunesUrlStr) {
+            delegate?.willLoadData()
+            let queryParameterURL = url.appendQueryParameter(queryParameters: queryParameter)
+            URLSession.shared.dataTask(with: queryParameterURL, completionHandler: { [weak self] (data, response, error) in
                 if let error = error {
                     self?.delegate?.error(error: error)
                 } else {
@@ -33,7 +31,6 @@ class ViewModel {
                           self?.searchResponse = try JSONDecoder().decode(SearchResponse.self, from: data)
                       }  catch let jsonError {
                           self?.delegate?.error(error: jsonError)
-                          print(jsonError.localizedDescription)
                       }
                   }
                 }

@@ -11,16 +11,15 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-
     @IBOutlet weak var indication: UIActivityIndicatorView!
-    let viewModel = ViewModel()
-    let musicPlayer = MusicPlayer()
+    
+    private let viewModel = ViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
-        
         viewModel.delegate = self
     }
 }
@@ -36,25 +35,20 @@ extension ViewController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         if let song = viewModel.getSelectedSong(at: indexPath.row) {
             cell.textLabel?.text = song.trackName
         }
 
-        
         return cell
     }
-
 }
 
 // MARK: - Table view UITableViewDelegate
 extension ViewController: UITableViewDelegate {
-    
-    // MARK: - Table view UITableViewDelegate
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let song = viewModel.getSelectedSong(at: indexPath.row) {
-            musicPlayer.playSong(musicURL: song.previewUrl)
+            MusicPlayer.shared.playSong(musicURL: song.previewUrl)
         }
     }
 }
@@ -67,8 +61,16 @@ extension ViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
-            viewModel.loadData(term: searchText)
+            // Avoid continue typing
+            NSObject.cancelPreviousPerformRequests(withTarget: self)
+            perform(#selector(getSearchInfo), with: nil, afterDelay: 1.0)
         }
+    }
+    
+    // Avoid continue typing
+    @objc private func getSearchInfo() {
+        guard let keyword = searchBar.text, !keyword.isEmpty else { return }
+        viewModel.loadData(queryParameter: ["term": keyword, "media": "music"])
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -80,7 +82,14 @@ extension ViewController: UISearchBarDelegate {
 // MARK: - ViewModelDelegate
 extension ViewController: ViewModelDelegate {
     func error(error: Error) {
-        
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error",
+                                          message: error.localizedDescription,
+                                          preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func willLoadData() {
@@ -95,5 +104,4 @@ extension ViewController: ViewModelDelegate {
             self.indication.stopAnimating()
         }
     }
-    
 }

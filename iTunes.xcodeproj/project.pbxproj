@@ -16,6 +16,7 @@
 		A9BC27E22849B11D00F41E7E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC27E12849B11D00F41E7E /* ViewModel.swift */; };
 		A9BC27E42849B35B00F41E7E /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC27E32849B35B00F41E7E /* Search.swift */; };
 		A9BC27E62849BDBB00F41E7E /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC27E52849BDBB00F41E7E /* MusicPlayer.swift */; };
+		A9BC27ED284A09A700F41E7E /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BC27EC284A09A700F41E7E /* URL+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A9BC27E12849B11D00F41E7E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		A9BC27E32849B35B00F41E7E /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		A9BC27E52849BDBB00F41E7E /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		A9BC27EC284A09A700F41E7E /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +48,7 @@
 		A9BC27BE2849AA9500F41E7E = {
 			isa = PBXGroup;
 			children = (
-				A9BC27C92849AA9500F41E7E /* itune */,
+				A9BC27C92849AA9500F41E7E /* iTunes */,
 				A9BC27C82849AA9500F41E7E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,21 +61,46 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A9BC27C92849AA9500F41E7E /* itune */ = {
+		A9BC27C92849AA9500F41E7E /* iTunes */ = {
 			isa = PBXGroup;
 			children = (
+				A9BC27F0284A0F4800F41E7E /* Page */,
+				A9BC27F1284A0F5200F41E7E /* Shared */,
+				A9BC27F2284A0F5D00F41E7E /* Model */,
 				A9BC27CA2849AA9500F41E7E /* AppDelegate.swift */,
 				A9BC27CC2849AA9500F41E7E /* SceneDelegate.swift */,
-				A9BC27CE2849AA9500F41E7E /* ViewController.swift */,
-				A9BC27E12849B11D00F41E7E /* ViewModel.swift */,
-				A9BC27D02849AA9500F41E7E /* Main.storyboard */,
 				A9BC27D32849AA9700F41E7E /* Assets.xcassets */,
+				A9BC27D02849AA9500F41E7E /* Main.storyboard */,
 				A9BC27D52849AA9700F41E7E /* LaunchScreen.storyboard */,
 				A9BC27D82849AA9700F41E7E /* Info.plist */,
-				A9BC27E32849B35B00F41E7E /* Search.swift */,
-				A9BC27E52849BDBB00F41E7E /* MusicPlayer.swift */,
 			);
-			path = itune;
+			path = iTunes;
+			sourceTree = "<group>";
+		};
+		A9BC27F0284A0F4800F41E7E /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				A9BC27CE2849AA9500F41E7E /* ViewController.swift */,
+				A9BC27E12849B11D00F41E7E /* ViewModel.swift */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		A9BC27F1284A0F5200F41E7E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A9BC27E52849BDBB00F41E7E /* MusicPlayer.swift */,
+				A9BC27EC284A09A700F41E7E /* URL+Extension.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A9BC27F2284A0F5D00F41E7E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9BC27E32849B35B00F41E7E /* Search.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,7 +138,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A9BC27C22849AA9500F41E7E /* Build configuration list for PBXProject "itune" */;
+			buildConfigurationList = A9BC27C22849AA9500F41E7E /* Build configuration list for PBXProject "iTunes" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -152,6 +179,7 @@
 				A9BC27E62849BDBB00F41E7E /* MusicPlayer.swift in Sources */,
 				A9BC27E42849B35B00F41E7E /* Search.swift in Sources */,
 				A9BC27E22849B11D00F41E7E /* ViewModel.swift in Sources */,
+				A9BC27ED284A09A700F41E7E /* URL+Extension.swift in Sources */,
 				A9BC27CD2849AA9500F41E7E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,7 +257,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -284,7 +312,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -303,8 +331,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 72M2493FFK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = itune/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "itune search";
+				INFOPLIST_FILE = iTunes/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "iTunes search";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -316,7 +344,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tw.test.itune;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.test.itunes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -333,8 +361,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 72M2493FFK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = itune/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "itune search";
+				INFOPLIST_FILE = iTunes/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "iTunes search";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -346,7 +374,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tw.test.itune;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.test.itunes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -357,7 +385,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A9BC27C22849AA9500F41E7E /* Build configuration list for PBXProject "itune" */ = {
+		A9BC27C22849AA9500F41E7E /* Build configuration list for PBXProject "iTunes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A9BC27D92849AA9700F41E7E /* Debug */,
