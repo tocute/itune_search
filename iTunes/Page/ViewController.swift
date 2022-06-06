@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var indication: UIActivityIndicatorView!
     
     private let viewModel = ViewModel()
-
+    private var timer: Timer?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,7 +64,17 @@ extension ViewController: UISearchBarDelegate {
             // Avoid continue typing
             NSObject.cancelPreviousPerformRequests(withTarget: self)
             perform(#selector(getSearchInfo), with: nil, afterDelay: 1.0)
+            
+            if timer == nil {
+                timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireSearch), userInfo: nil, repeats: false)
+            }
         }
+    }
+    
+    @objc func fireSearch() {
+        timer?.invalidate()
+        timer = nil
+        getSearchInfo()
     }
     
     // Avoid continue typing
