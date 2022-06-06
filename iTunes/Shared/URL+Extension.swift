@@ -13,9 +13,10 @@ extension URL {
         
         var queryItems = [URLQueryItem]()
         for (key, value) in queryParameters {
-            let item = URLQueryItem(name: key, value: value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
+            let item = URLQueryItem(name: key, value: String(describing: value))
             queryItems.append(item)
-        }
+        }        
+        
         urlComponents.queryItems = queryItems
         
         guard let queryParameterURL = urlComponents.url else { return self }
